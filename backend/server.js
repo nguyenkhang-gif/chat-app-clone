@@ -6,8 +6,8 @@ import messRouter from "./routes/message.routes.js";
 import userRouter from "./routes/user.routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
+import { app, server } from "./socket/socket.js";
 
-const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 4000;
 
@@ -18,7 +18,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/message", messRouter);
 app.use("/api/users", userRouter);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`connect to server ${PORT}`);
 });
